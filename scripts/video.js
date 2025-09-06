@@ -34,9 +34,9 @@
 }
 
 //Load Videos
-const loadVideos =async()=>{
+const loadVideos =async(searchItems="")=>{
     try{
-    const VidRes = await fetch('https://openapi.programming-hero.com/api/phero-tube/videos')
+    const VidRes = await fetch(`https://openapi.programming-hero.com/api/phero-tube/videos?title=${searchItems}`)
     const VidData = await VidRes.json()
     displayVideos(VidData.videos);
     }
@@ -162,6 +162,11 @@ else if(Hour<24){
 return `${Hour}hrs ${Min} min ago`
 }
 }
+
+//get value Search Box
+document.getElementById('searchInput').addEventListener('keyup',(e)=>{
+  loadVideos(e.target.value)
+})
   
 //call function
 loadCatagories();
