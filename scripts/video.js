@@ -39,6 +39,15 @@ const loadVideos =async(searchItems="")=>{
     const VidRes = await fetch(`https://openapi.programming-hero.com/api/phero-tube/videos?title=${searchItems}`)
     const VidData = await VidRes.json()
     displayVideos(VidData.videos);
+    
+    document.getElementById('DesBtn').addEventListener('click',()=>{
+    SortedVideosDes(VidData.videos)
+})
+
+document.getElementById('AscBtn').addEventListener('click',()=>{
+    SortedVideosAsc(VidData.videos)
+})
+    
     }
     catch(error)
     {
@@ -55,6 +64,14 @@ const loadVideos =async(searchItems="")=>{
   const activeBtn =document.getElementById(`btn-${id}`)
   activeBtn.classList.add('redBetton')
   displayVideos(data.category)
+    
+document.getElementById('DesBtn').addEventListener('click',()=>{
+    SortedVideosDes(data.category)
+})
+
+document.getElementById('AscBtn').addEventListener('click',()=>{
+    SortedVideosAsc(data.category)
+})
   }
   catch(error){
    console.error('ERROR -',error)
@@ -167,6 +184,26 @@ return `${Hour}hrs ${Min} min ago`
 document.getElementById('searchInput').addEventListener('keyup',(e)=>{
   loadVideos(e.target.value)
 })
+
+
+//Sorting 
+const StringToNumber = (str)=>{
+    str=str.toUpperCase();
+    let num = parseFloat(str.split("K")[0])*1000
+ return num;
+}
+const SortedVideosDes =(Vids)=>{
+ const DescendingData =Vids.sort((a,b)=>{
+    return(StringToNumber(b.others.views)-StringToNumber(a.others.views))
+ })
+ displayVideos(DescendingData)
+}
+const SortedVideosAsc =(Vids)=>{
+ const AscendingData =Vids.sort((a,b)=>{
+    return(StringToNumber(a.others.views)-StringToNumber(b.others.views))
+ })
+ displayVideos(AscendingData)
+}
   
 //call function
 loadCatagories();
