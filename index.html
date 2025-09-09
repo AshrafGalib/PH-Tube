@@ -38,15 +38,24 @@
 
             <!-- sort button starts -->
             <div class=" sort">
-               <!-- change popover-1 and --anchor-1 names. Use unique names for each dropdown -->
-<button class="btn" popovertarget="popover-1" style="anchor-name:--anchor-1">
+              
+              <details close class="dropdown">
+  <summary class="btn m-1">Sort by views</summary>
+  <ul class="menu dropdown-content bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+    <li><a><button id="DesBtn" >Descending</button></a></li>
+    <li><a><button id="AscBtn" >Ascending</button></a></li>
+  </ul>
+</details>
+
+              <!-- change popover-1 and --anchor-1 names. Use unique names for each dropdown
+<button class="btn dropdown-open" popovertarget="popover-1" style="anchor-name:--anchor-1">
   Sort by views
 </button>
 <ul class="dropdown menu w-52 rounded-box bg-base-100 shadow-sm"
   popover id="popover-1" style="position-anchor:--anchor-1">
   <li><a><button id="DesBtn" >Descending</button></a></li>
   <li><a><button id="AscBtn" >Ascending</button></a></li>
-</ul>
+</ul> -->
             </div>
             <!-- sort button ends -->
         </nav>

@@ -40,12 +40,16 @@ const loadVideos =async(searchItems="")=>{
     const VidData = await VidRes.json()
     displayVideos(VidData.videos);
     
-    document.getElementById('DesBtn').addEventListener('click',()=>{
+    const details = document.querySelector('details');
+
+document.getElementById('DesBtn').addEventListener('click',()=>{
     SortedVideosDes(VidData.videos)
+      details.removeAttribute('open');
 })
 
 document.getElementById('AscBtn').addEventListener('click',()=>{
     SortedVideosAsc(VidData.videos)
+    details.removeAttribute('open');
 })
     
     }
